@@ -1,10 +1,11 @@
 from fastapi import FastAPI
-import app.models as models
-from database import criar_tabelas
-from routes import router_produtos
+import models
+from database import Base, engine
+from routes import router
 
-criar_tabelas()
+
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
-app.include_router(router_produtos)
+app.include_router(router)
