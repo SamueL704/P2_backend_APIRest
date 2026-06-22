@@ -2,8 +2,8 @@ from pydantic import BaseModel, Field, ConfigDict
 
 
 class ProdutoCreate(BaseModel):
-    nome: str = Field(..., min_length=1)
-    preco: float = Field(..., gt=0)
+    nome: str
+    preco: float
     estoque: int = 0
     ativo: bool = True
 

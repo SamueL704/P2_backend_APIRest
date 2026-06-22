@@ -5,9 +5,15 @@ import os
 
 load_dotenv()
 
-DATABASE_URL = os.getenv("DATABASE_URL")
+def get_db_url():
+    url = os.getenv("DATABASE_URL")
 
-engine = create_engine(DATABASE_URL)
+    if not url:
+        raise ValueError("DATABASE_URL não encontrada")
+    
+    return url
+        
+engine = create_engine(get_db_url())
 
 SessionLocal = sessionmaker(
     bind=engine,
@@ -27,3 +33,4 @@ def get_db():
 
 def criar_tabelas():
     Base.metadata.create_all(bind=engine)
+    print("Tabelas criadas")
