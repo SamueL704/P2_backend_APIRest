@@ -12,5 +12,7 @@ app = FastAPI()
 def home():
     return {"message":"api rodando"}
 
-# app.include_router(router)
+app.include_router(router)
+
+
 criar_tabelas()
